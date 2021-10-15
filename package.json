@@ -1,0 +1,35 @@
+{
+  "name": "nodejs-file-manager",
+  "version": "1.0.0",
+  "description": "Access files and folders with Web interface",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@types/node": "^16.0.0",
+    "@types/nedb": "^1.8.11",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "mime": "^2.5.2",
+    "express-fileupload": "^1.2.1",
+    "unzipper": "^0.10.11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghzcool/nodejs-file-manager.git"
+  },
+  "keywords": [
+    "web",
+    "file",
+    "manager",
+    "node"
+  ],
+  "author": "Pavel Pirogov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghzcool/nodejs-file-manager/issues"
+  },
+  "homepage": "https://github.com/ghzcool/nodejs-file-manager#readme"
+}
