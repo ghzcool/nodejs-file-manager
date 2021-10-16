@@ -154,7 +154,7 @@ module.exports = class FileService {
           reject(err);
           return;
         }
-        fs.mkdir(path + '/' + name, 511, (err) => {
+        fs.mkdir(path + '/' + name, (err) => {
           if (err) {
             reject(err);
             return;

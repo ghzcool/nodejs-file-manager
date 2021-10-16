@@ -14,7 +14,7 @@ module.exports = class FileController {
     app.post('/api/file/upload', (req, res) => this.upload(req, res));
     app.get('/api/file/extract', (req, res) => this.extract(req, res));
 
-    process.umask(511);
+    // process.umask(511);
 
     console.log('FilesController registered');
   }
