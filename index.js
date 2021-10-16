@@ -29,10 +29,11 @@ const app = express();
 const port = process.env.FILE_MANAGER_PORT || args.port;
 const path = process.env.FILE_MANAGER_PATH || args.path;
 
+app.use(cors());
+app.use(express.json());
 app.use(fileUpload({
     createParentPath: true
 }));
-app.use(cors());
 app.use(bodyParser.urlencoded({extended: false, limit: '100mb'}));
 app.use(bodyParser.json({type: 'application/*+json', limit: '100mb'}));
 app.use(bodyParser.text({type: 'text/html', limit: '100mb'}));
