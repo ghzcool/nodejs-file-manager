@@ -1,6 +1,6 @@
 {
   "name": "nodejs-file-manager",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Access files and folders with Web interface",
   "main": "index.js",
   "scripts": {

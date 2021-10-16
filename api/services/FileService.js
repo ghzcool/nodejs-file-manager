@@ -19,7 +19,25 @@ module.exports = class FileService {
             reject(err);
             return;
           }
-          resolve(files.map(item => ({ name: item.name, type: item.isDirectory() ? 2 : 1 })));
+          resolve(files.sort((a, b) => {
+            const aName = a.name.toLowerCase();
+            const bName = b.name.toLowerCase();
+            if (aName > bName) {
+              return 1;
+            }
+            if (aName < bName) {
+              return -1;
+            }
+            return 0;
+          }).map(item => ({ name: item.name, type: item.isDirectory() ? 2 : 1 })).sort((a, b) => {
+            if (a.type > b.type) {
+              return -1;
+            }
+            if (a.type < b.type) {
+              return 1;
+            }
+            return 0;
+          }));
         });
       });
     });
