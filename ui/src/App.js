@@ -1,7 +1,7 @@
 import React from "react";
 import FileManager from "react-file-manager-ui";
 
-const apiPath = 'http://localhost:5000/api';
+const apiPath = '/api';
 
 const getList = (path) => {
   return new Promise(async resolve => {

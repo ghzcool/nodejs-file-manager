@@ -2,11 +2,9 @@ const FileService = require('../services/FileService');
 
 module.exports = class FileController {
 
-  fileService = new FileService();
-  basePath;
-
   constructor(app, { path }) {
     this.basePath = path;
+    this.fileService = new FileService();
     app.get('/api/file/list', (req, res) => this.listGet(req, res));
     app.get('/api/file/get', (req, res) => this.contentGet(req, res));
     app.put('/api/file/put', (req, res) => this.contentPut(req, res));

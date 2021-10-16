@@ -3,9 +3,9 @@ Access files and folders with Web interface
 
 ##Usage
 ```
-npm install nodejs-file-manager -g
+npm install nodejs-file-manager
 ```
 
 ```
-node nodejs-file-manager -PATH /home/user/files -PORT 5000
+node ./node_modules/nodejs-file-manager -PATH /home/user/files -PORT 5000
 ```
