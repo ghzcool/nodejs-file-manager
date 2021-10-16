@@ -26,7 +26,7 @@ module.exports = class FileController {
   listGet(req, res) {
     res.setHeader('Content-Type', 'application/json-patch+json');
     const { query } = req;
-    const path = this.getPath(query.path);
+    const path = this.basePath + (query.path || '');
 
     this.fileService.list(path).then(response => res.send(response)).catch(error => {
       console.error(error);
@@ -36,7 +36,7 @@ module.exports = class FileController {
 
   contentGet(req, res) {
     const { query } = req;
-    const path = this.getPath(query.path);
+    const path = this.basePath + (query.path || '');
     this.fileService.pipe(path, res).then().catch(error => {
       console.error(error);
       res.status(500).end();
