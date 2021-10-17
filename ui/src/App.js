@@ -60,7 +60,7 @@ const deletePaths = (paths) => {
 };
 
 const openFile = (path) => {
-  window.open(apiPath + '/file/get?path=' + path);
+  window.open(apiPath + '/file/pipe' + path);
 };
 
 const rename = (path) => {

@@ -6,7 +6,7 @@ module.exports = class FileController {
     this.basePath = path;
     this.fileService = new FileService();
     app.get('/api/file/list', (req, res) => this.listGet(req, res));
-    app.get('/api/file/get', (req, res) => this.contentGet(req, res));
+    app.get('/api/file/pipe/*', (req, res) => this.contentPipe(req, res));
     app.put('/api/file/put', (req, res) => this.contentPut(req, res));
     app.delete('/api/file/delete', (req, res) => this.delete(req, res));
     app.post('/api/file/mkdir', (req, res) => this.createDir(req, res));
@@ -32,13 +32,18 @@ module.exports = class FileController {
     });
   }
 
-  contentGet(req, res) {
-    const { query } = req;
-    const path = this.basePath + (query.path || '');
-    this.fileService.pipe(path, res).then().catch(error => {
+  contentPipe(req, res) {
+    const {params} = req;
+    const path = this.basePath + '/' + (params[0] || '');
+    try {
+      this.fileService.pipe(path, res).then().catch(error => {
+        console.error(error);
+        res.status(500).end();
+      });
+    } catch (error) {
       console.error(error);
       res.status(500).end();
-    });
+    }
   }
 
   upload(req, res) {
