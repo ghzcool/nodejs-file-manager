@@ -4,13 +4,14 @@ import FileManager from "react-file-manager-ui";
 const apiPath = '/api';
 
 const getList = (path) => {
-  return new Promise(async resolve => {
+  return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch(apiPath + '/file/list?path=' + path);
       const list = await response.json();
       resolve(list);
     } catch (error) {
       console.error(error);
+      reject(error);
     }
   });
 };
@@ -31,6 +32,8 @@ const createDirectory = (path) => {
         console.error(error);
         reject(error);
       }
+    } else {
+      reject();
     }
   });
 };
@@ -50,6 +53,8 @@ const deletePaths = (paths) => {
         console.error(error);
         reject(error);
       }
+    } else {
+      reject();
     }
   });
 };
@@ -62,17 +67,21 @@ const rename = (path) => {
   return new Promise(async (resolve, reject) => {
     const parts = path.split('/');
     const name = prompt("New name", parts[parts.length - 1]);
-    try {
-      await fetch(apiPath + '/file/rename', {
-          method: 'put',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ path, name })
-        }
-      );
-      resolve();
-    } catch (error) {
-      console.error(error);
-      reject(error);
+    if (name) {
+      try {
+        await fetch(apiPath + '/file/rename', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ path, name })
+          }
+        );
+        resolve();
+      } catch (error) {
+        console.error(error);
+        reject(error);
+      }
+    } else {
+      reject();
     }
   });
 };
